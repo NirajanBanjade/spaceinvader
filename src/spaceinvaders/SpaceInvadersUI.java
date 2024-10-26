@@ -24,7 +24,7 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
     public SpaceInvadersUI() {
         //
         timer = new Timer(20, this); // 20ms delay for smoother animations
-        invaderboxes = new ArrayList<>(); // Need to describe what ArrayList<> is.
+        invaderboxes = new ArrayList<>(); //  An ArrayList<>() is a resizable arary in java where we can add or remove objects/elements dynamically. 
         bullets = new ArrayList<>();
         random = new Random();
         moveLeft = false;
