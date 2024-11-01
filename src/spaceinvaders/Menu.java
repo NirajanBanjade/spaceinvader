@@ -1,92 +1,90 @@
-
 package spaceinvaders;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.MalformedURLException;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.net.URL;
 
 public class Menu {
     private final ImageSelection imageSelection;
+    private final JFrame frame;
 
-    public Menu(ImageSelection imageSelection) {
+    public Menu(ImageSelection imageSelection, JFrame frame) {
         this.imageSelection = imageSelection;
+        this.frame = frame;
     }
 
     public JMenuBar createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
+        menuBar.setBackground(Color.LIGHT_GRAY); // Set menu bar background color
 
-        // Shooter Image Menu
-        JMenu shooterMenu = new JMenu("Shooter Image");
-        addImageMenuItems(shooterMenu, "Shooter");
+        // Create and add Shooter Image Menu
+        JMenu shooterMenu = createImageMenu("Shooter");
         menuBar.add(shooterMenu);
 
-        // Invader Image Menu
-        JMenu invaderMenu = new JMenu("Invader Image");
-        addImageMenuItems(invaderMenu, "Invader");
+        // Create and add Invader Image Menu
+        JMenu invaderMenu = createImageMenu("Invader");
         menuBar.add(invaderMenu);
 
-        // Bullet Type Menu
-        JMenu bulletMenu = new JMenu("Bullet Type");
-        addImageMenuItems(bulletMenu, "Bullet");
+        // Create and add Bullet Type Menu
+        JMenu bulletMenu = createImageMenu("Bullet");
         menuBar.add(bulletMenu);
+
+        // Create and add Music Menu
+
+
+        // Create and add Start Game button
+        JButton startGameButton = new JButton("Start Game");
+        startGameButton.addActionListener(e -> startGame());
+        menuBar.add(startGameButton);
 
         return menuBar;
     }
 
-    private void addImageMenuItems(JMenu menu, String type) {
-        JMenuItem defaultItem1 = new JMenuItem("Default " + type + " 1");
-        defaultItem1.addActionListener(e -> setDefaultImage(type, "/resources/" + type + "Image1.png"));
-        menu.add(defaultItem1);
+    private JMenu createImageMenu(String type) {
+        JMenu menu = new JMenu(type);
+        menu.setForeground(Color.BLUE); // Set menu text color
 
-        JMenuItem defaultItem2 = new JMenuItem("Default " + type + " 2");
-        defaultItem2.addActionListener(e -> setDefaultImage(type, "/resources/" + type + "Image2.png"));
-        menu.add(defaultItem2);
-       
+        // Add predefined image items
+        String[] imageNames = getImageNames(type);
+        for (String imageName : imageNames) {
+            JMenuItem menuItem = new JMenuItem(imageName);
+            menuItem.addActionListener(e -> setDefaultImage(type, "/spaceinvaders/icons/"  + imageName));
+            menu.add(menuItem);
+        }
 
-        JMenuItem defaultItem3 = new JMenuItem("Default " + type + " 3");
-        defaultItem2.addActionListener(e -> setDefaultImage(type, "/resources/" + type + "Image3.png"));
-        menu.add(defaultItem3);
-       
+        // Add a custom URL option
+        JMenuItem customUrlItem = new JMenuItem("Custom URL");
+        customUrlItem.addActionListener(e -> promptForCustomUrl(type));
+        menu.add(customUrlItem);
 
+        return menu;
     }
 
-    private void playMusic(String musicUrl) {  
-        try {
-            // Create a URL object for the music file
-            URL url = new URL(musicUrl);
-    
-            AudioInputStream audioStream = AudioSystem.getAudioInputStream(url);
+    private String[] getImageNames(String type) {
+        return switch (type) {
+            case "Shooter" -> new String[]{"fire1.png", "fire2.png", "fire3.png"};
+            case "Invader" -> new String[]{"invader1.jpeg", "invader2.jpeg", "invader3.jpeg"};
+            case "Bullet" -> new String[]{"bullet1.png", "bullet2.png", "bullet3.png"};
+            default -> new String[]{};
+        };
+    }
 
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioStream);
 
-            clip.start();
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
 
-            clip.addLineListener(event -> {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    clip.close();
-                }
-            });
-    
-        } catch (MalformedURLException e) {
-            System.err.println("Invalid URL: " + e.getMessage());
-        } catch (UnsupportedAudioFileException e) {
-            System.err.println("Unsupported audio format: " + e.getMessage());
-        } catch (IOException e) {
-            System.err.println("Error reading audio file: " + e.getMessage());
-        } catch (LineUnavailableException e) {
-            System.err.println("Audio line unavailable: " + e.getMessage());
+    private void promptForCustomUrl(String type) {
+        String customUrl = JOptionPane.showInputDialog(frame, "Enter a custom URL for " + type + " image:", "Custom URL", JOptionPane.PLAIN_MESSAGE);
+        if (customUrl != null && !customUrl.trim().isEmpty()) {
+            setDefaultImage(type, customUrl);
+        } else {
+            JOptionPane.showMessageDialog(frame, "Invalid URL entered.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+
+    
 
     private void setDefaultImage(String type, String resourcePath) {
         switch (type) {
@@ -94,11 +92,20 @@ public class Menu {
             case "Invader" -> imageSelection.setInvaderImage(resourcePath);
             case "Bullet" -> imageSelection.setBulletImage(resourcePath);
         }
+        // Optionally add feedback to user
+        JOptionPane.showMessageDialog(frame, type + " image set to: " + resourcePath, "Image Updated", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    
+    public void startGame() {
+        // Hide the menu bar
+        frame.setJMenuBar(null);
+
+        // Initialize and add the game UI
+        SpaceInvadersUI game = new SpaceInvadersUI();
+        frame.getContentPane().removeAll(); // Clear any existing components
+        frame.add(game); // Add the game UI
+        frame.revalidate(); // Refresh the frame to display the game
+        frame.repaint();
+        System.out.println("Start Game button clicked, initializing game...");
+    }
 }
-
-
-
-
