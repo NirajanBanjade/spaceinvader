@@ -26,9 +26,9 @@ public class ImageSelection {
     }
 
     public void setGameImages() {   // links need to be changed
-        shooterImage = loadImage("Shooter", "spaceinvaders/icons/fire1.png");
-        invaderImage = loadImage("Invader", "spaceinvaders/icons/invader1.jpeg");
-        bulletImage = loadImage("Bullet", "spaceinvaders/icons/bullet1.png");
+        shooterImage = loadImage("Shooter", "./icons/fire1.png");
+        invaderImage = loadImage("Invader", "./icons/invader1.jpeg");
+        bulletImage = loadImage("Bullet", "./icons/bullet1.png");
     }
     // set images is different for each as we have option to set each image differently
 
