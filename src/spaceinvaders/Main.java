@@ -12,12 +12,14 @@ public class Main {
 
         ImageSelection imageSelection = new ImageSelection();
         ImageLoader imageLoader = new ImageLoader(frame, imageSelection);
-        GameStarter gameStarter = new GameStarter(frame);
+        GameStarter gameStarter = new GameStarter(frame, imageSelection);
+
         MenuFactory menuFactory = new MenuFactory(imageLoader, gameStarter);
 
         // Create Menu and set up the menu bar with the available image types
         Menu menu = new Menu(menuFactory);
         frame.setJMenuBar(menu.createMenuBar());
+        
         
         frame.setVisible(true);
     }
