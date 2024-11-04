@@ -8,6 +8,7 @@ public class ListenerActions {
 
     public void updatePositions(SpaceInvadersUI game) {
         int shooter_X_Coordinate = game.getShooter_X_Coordinate();
+        System.out.println(shooter_X_Coordinate);
         int shooter_Width = game.getShooterWidth();
         // Move shooter left or right
         if (game.moveLeft && shooter_X_Coordinate > 0) {
@@ -88,3 +89,7 @@ public class ListenerActions {
         }
     }
 }
+
+
+
+

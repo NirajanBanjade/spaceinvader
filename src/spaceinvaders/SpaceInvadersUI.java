@@ -23,23 +23,20 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
     // Constructor
     public SpaceInvadersUI(ImageSelection imageSelection) {
         this.imageSelection = imageSelection;
-        timer = new Timer(20, this); // 20ms delay for smoother animations
-        invaderboxes = new ArrayList<>(); //  An ArrayList<>() is a resizable arary in java where we can add or remove objects/elements dynamically. 
+        timer = new Timer(20, this);
+        invaderboxes = new ArrayList<>();
         bullets = new ArrayList<>();
         random = new Random();
         moveLeft = false;
         moveRight = false;
         listenerActions = new ListenerActions();
-        imageSelection = new ImageSelection();
         paintingActions = new PaintingActions();
-
-        // Set images
-        imageSelection.setGameImages();
-
+    
         setFocusable(true);
         addKeyListener(this);
         timer.start();
     }
+    
 
     @Override
     // Perhaps change this to specifically look for timer event or move all code to
@@ -79,7 +76,8 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
         paintingActions.drawInvaders(g, invaderboxes, imageSelection.getInvaderImage(), this);
 
         // Draw bullets (bullets)
-        paintingActions.drawBullets(g, bullets);
+        paintingActions.drawBullets(g, bullets, imageSelection.getBulletImage());
+
     }
 
     public int getShooterWidth() {
@@ -102,6 +100,9 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
     // thing.
 
     // Inner class representing falling invaderboxes
+
+    
+
     public class InvaderBox {
         int x, y, size;
 
