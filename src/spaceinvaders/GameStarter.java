@@ -21,6 +21,7 @@ public class GameStarter {
         frame.add(game);
         frame.revalidate();
         frame.repaint();
+        game.requestFocusInWindow();// requesting focus immediately after the start.
         
         System.out.println("Start Game button clicked, initializing game...");
         gameStarted = true;
