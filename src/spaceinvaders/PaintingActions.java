@@ -5,7 +5,7 @@ import java.awt.*;
 public class PaintingActions {
 
     public PaintingActions() {
-
+   
     }
 
     public void drawShooter(Graphics g, SpaceInvadersUI game) {

@@ -11,6 +11,10 @@ public class ImageSelection {
     private Image invaderImage;
     private Image bulletImage;
 
+    public ImageSelection() {
+        setGameImages();  // Set defaults when ImageSelection is created
+    }
+
 
     public Image getShooterImage() {
         return shooterImage;
