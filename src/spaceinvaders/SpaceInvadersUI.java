@@ -29,7 +29,7 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
         random = new Random();
         moveLeft = false;
         moveRight = false;
-        listenerActions = new ListenerActions();
+        listenerActions = new ListenerActions(this);  // passing the instance of listenerActions.
         paintingActions = new PaintingActions();
     
         setFocusable(true);
@@ -39,8 +39,6 @@ public class SpaceInvadersUI extends JPanel implements ActionListener, KeyListen
     
 
     @Override
-    // Perhaps change this to specifically look for timer event or move all code to
-    // ListenerActions and add overloading
     public void actionPerformed(ActionEvent e) {
         listenerActions.updatePositions(this);
         repaint();

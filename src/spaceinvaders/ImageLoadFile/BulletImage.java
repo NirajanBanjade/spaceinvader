@@ -1,5 +1,7 @@
 // File: BulletImage.java
-package spaceinvaders;
+package spaceinvaders.ImageLoadFile;
+
+import spaceinvaders.ImageType;
 
 public class BulletImage implements ImageType {
     @Override

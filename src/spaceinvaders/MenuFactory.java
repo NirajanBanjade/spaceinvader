@@ -3,6 +3,7 @@ package spaceinvaders;
 import java.awt.Color;
 
 import javax.swing.*;
+
 import java.util.List;
 
 public class MenuFactory {

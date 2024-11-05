@@ -26,16 +26,6 @@ public class PaintingActions {
         }
     }
 
-    // public void drawBullets(Graphics g, java.util.List<SpaceInvadersUI.Bullet> bullets,Image bulletImage ){
-    //     g.setColor(Color.YELLOW);
-    //     for (SpaceInvadersUI.Bullet bullet : bullets) {
-    //         // Make the bullet into a triangle. Remember where the origin is on the game
-    //         int[] xPoints = { bullet.x, bullet.x - 5, bullet.x + 5 };
-    //         int[] yPoints = { bullet.y, bullet.y + 10, bullet.y + 10 };
-    //         g.fillPolygon(xPoints, yPoints, 3);
-    //     }
-    // }
-
     public void drawBullets(Graphics g, java.util.List<SpaceInvadersUI.Bullet> bullets, Image bulletImage) {
         for (SpaceInvadersUI.Bullet bullet : bullets) {
             g.drawImage(bulletImage, bullet.x - 5, bullet.y, 10, 10, null); 
