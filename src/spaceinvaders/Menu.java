@@ -2,6 +2,11 @@
 package spaceinvaders;
 
 import javax.swing.*;
+
+import spaceinvaders.ImageLoadFile.BulletImage;
+import spaceinvaders.ImageLoadFile.InvaderImage;
+import spaceinvaders.ImageLoadFile.ShooterImage;
+
 import java.util.Arrays;
 
 public class Menu {

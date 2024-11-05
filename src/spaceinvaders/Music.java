@@ -10,12 +10,14 @@ import javax.swing.*;
 public class Music {
     private final JFrame frame;
     private Clip clip;
-    private boolean isCustomMusicSelected = false; // Flag to track if custom music is selected
+    private boolean customMusicSelected = false; // Flag to track if custom music is selected
 
     public Music(JFrame frame) {
         this.frame = frame;
     }
-
+    public boolean isCustomMusicSelected() { //getter for custom music . if it is not custom then default.
+        return customMusicSelected;
+    }
     private void playMusic(String musicPath) {
         stopMusic(); // Stop any currently playing music
         try {
@@ -53,7 +55,7 @@ public class Music {
 
     // Only play default if no custom music has been chosen
     public void playDefaultMusic() {
-        if (!isCustomMusicSelected) { 
+        if (!isCustomMusicSelected()) { 
             String defaultMusicPath = "icons/music1.wav";
             playMusic(defaultMusicPath);
         }
@@ -61,7 +63,7 @@ public class Music {
 
     // Method to handle custom music selection, marking that custom music was chosen
     public void playCustomMusic(String customMusicPath) {
-        isCustomMusicSelected = true; // Set custom music as selected
+        customMusicSelected = true; // Set custom music as selected
         playMusic(customMusicPath);    // Play the selected custom music
     }
 

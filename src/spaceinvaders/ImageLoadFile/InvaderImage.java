@@ -1,5 +1,7 @@
 // File: InvaderImage.java
-package spaceinvaders;
+package spaceinvaders.ImageLoadFile;
+
+import spaceinvaders.ImageType;
 
 public class InvaderImage implements ImageType {
     @Override
