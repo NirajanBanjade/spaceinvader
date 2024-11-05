@@ -57,6 +57,7 @@ public class Music {
     public void playDefaultMusic() {
         
         if (!isCustomMusicSelected()) { 
+            stopMusic();
             String defaultMusicPath = "icons/music1.wav";
             playMusic(defaultMusicPath);
         }
