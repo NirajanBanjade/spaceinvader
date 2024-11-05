@@ -23,9 +23,9 @@ public class GameStarter {
         frame.repaint();
 
         // Play default music if no custom music has been selected
-        if (music.isCustomMusicSelected()) {
-            music.playDefaultMusic();
-        }
+        
+        music.playDefaultMusic();
+        
         game.requestFocusInWindow(); //request focus immediately after playing starter.
 
         System.out.println("Start Game button clicked, initializing game...");

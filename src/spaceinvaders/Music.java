@@ -10,7 +10,7 @@ import javax.swing.*;
 public class Music {
     private final JFrame frame;
     private Clip clip;
-    private boolean customMusicSelected = false; // Flag to track if custom music is selected
+    private static boolean customMusicSelected = false; // Flag to track if custom music is selected set as static.
 
     public Music(JFrame frame) {
         this.frame = frame;
@@ -56,7 +56,7 @@ public class Music {
     // Only play default if no custom music has been chosen
     public void playDefaultMusic() {
         
-        if (!isCustomMusicSelected()) { 
+        if (customMusicSelected==false) { 
             stopMusic();
             String defaultMusicPath = "icons/music1.wav";
             playMusic(defaultMusicPath);
