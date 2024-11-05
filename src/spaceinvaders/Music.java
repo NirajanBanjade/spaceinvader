@@ -55,14 +55,17 @@ public class Music {
 
     // Only play default if no custom music has been chosen
     public void playDefaultMusic() {
+        
         if (!isCustomMusicSelected()) { 
             String defaultMusicPath = "icons/music1.wav";
             playMusic(defaultMusicPath);
         }
+
     }
 
     // Method to handle custom music selection, marking that custom music was chosen
     public void playCustomMusic(String customMusicPath) {
+        stopMusic();   // stop any previous music and use custom.
         customMusicSelected = true; // Set custom music as selected
         playMusic(customMusicPath);    // Play the selected custom music
     }

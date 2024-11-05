@@ -1,4 +1,4 @@
-// File: Menu.java
+
 package spaceinvaders;
 
 import javax.swing.*;
